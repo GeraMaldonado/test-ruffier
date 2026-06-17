@@ -9,7 +9,9 @@ class MainWin(QWidget):
     self.show()
 
   def set_appear(self):
-    pass
+    self.setWindowTitle('Test Ruffier')
+    self.resize(500,500)
+    self.move(300, 200)
 
   def initUI(self):
     pass
