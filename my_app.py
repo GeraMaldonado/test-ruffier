@@ -26,7 +26,12 @@ class MainWin(QWidget):
     self.setLayout(self.layout)
 
   def connection(self):
-    pass
+    self.button.clicked.connect(self.next_click)
+
+
+  def next_click(self):
+    #mostrar sigueinte venta
+    self.hide()
 
 
 
