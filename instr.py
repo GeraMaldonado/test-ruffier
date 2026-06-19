@@ -12,3 +12,8 @@ txt_instruction = ('Esta aplicación le permite usar la prueba de Ruffier para r
                    'y luego durante los últimos 15 segundos del primer minuto del periodo de recuperación.\n'
                    '¡Importante! Si no se siente bien durante la prueba (mareos,\n'
                    'tinnitus, falta de respiración, etc.), detenga la prueba y consulte con un médico.' )
+
+txt_name = 'Introduzca su nombre completo:'
+txt_hintname = "Nombre completo"
+txt_age = "Introduzca su edad"
+txt_hintage = "0"
