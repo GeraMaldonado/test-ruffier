@@ -1,6 +1,8 @@
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QTime, QTimer
 from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QPushButton, QApplication, QLineEdit, QHBoxLayout
-from instr import txt_title, win_x, win_y, win_width, win_height, txt_name, txt_hintname, txt_hintage, txt_age, txt_test1, txt_starttest1, txt_hinttest1, txt_test2, txt_starttest2, txt_hinttest2, txt_test3, txt_starttest3, txt_hinttest3
+from PyQt5.QtGui import QFont
+
+from instr import txt_title, win_x, win_y, win_width, win_height, txt_name, txt_hintname, txt_hintage, txt_age, txt_test1, txt_starttest1, txt_hinttest1, txt_test2, txt_starttest2, txt_hinttest2, txt_test3, txt_starttest3, txt_hinttest3, txt_timer
 
 class TestWin(QWidget):
   def __init__(self):
@@ -48,6 +50,7 @@ class TestWin(QWidget):
       self.left_layout.addWidget(self.rest1_result, alignment = Qt.AlignLeft)
 
       self.left_layout.addWidget(self.test2_inst, alignment = Qt.AlignLeft)
+      self.left_layout.addWidget(self.test2_button, alignment = Qt.AlignLeft)
       self.left_layout.addWidget(self.rest2_result, alignment = Qt.AlignLeft)
       self.left_layout.addWidget(self.test3_inst, alignment = Qt.AlignLeft)
       self.left_layout.addWidget(self.test3_button, alignment = Qt.AlignLeft)
@@ -55,7 +58,8 @@ class TestWin(QWidget):
       self.left_layout.addWidget(self.rest3_result, alignment = Qt.AlignLeft)
 
 
-      self.label_time = QLabel("00:00:00") 
+      self.label_time = QLabel(txt_timer) 
+      self.label_time.setFont(QFont("Arial", 35, QFont.Bold))
 
 
       self.right_layout = QVBoxLayout()
@@ -77,10 +81,38 @@ class TestWin(QWidget):
 
 
   def connection(self):
-  	pass
-    
+    self.test1_button.clicked.connect(self.timer_test)
+    self.test2_button.clicked.connect(self.timer_sits)
 
 
   def next_click(self):
     self.hide()
 #    self.final_win = 
+
+
+  def timer_test(self):
+    self.time = QTime(0,0,15)
+    self.label_time.setText(self.time.toString())
+    self.timer = QTimer()
+    self.timer.timeout.connect(self.timer1Event)
+    self.timer.start(1000)
+
+
+  def timer1Event(self):
+    self.time = self.time.addSecs(-1)
+    self.label_time.setText(self.time.toString())
+    if self.time.toString() == "00:00:00":
+      self.timer.stop()
+
+  def timer_sits(self):
+    self.time = QTime(0,0,30)
+    self.label_time.setText(self.time.toString()[6:8])
+    self.timer = QTimer()
+    self.timer.timeout.connect(self.timer2Event)
+    self.timer.start(1500)
+
+  def timer2Event(self):
+    self.time = self.time.addSecs(-1)
+    self.label_time.setText(self.time.toString()[6:8])
+    if self.time.toString() == "00:00:00":
+      self.timer.stop()

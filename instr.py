@@ -1,3 +1,6 @@
+from PyQt5.QtCore import QTime
+
+
 txt_title = "Salud"
 win_x, win_y = 200, 100
 win_width, win_height = 1000, 600
@@ -25,6 +28,8 @@ txt_hinttest1 = '0'
 txt_hinttest2 = '0'
 txt_hinttest3 = '0'
 txt_starttest1 = 'Iniciar primera prueba'
-txt_starttest2 = 'Empezar ah acer sentadillas'
+txt_starttest2 = 'Empezar a hacer sentadillas'
 txt_starttest3 = 'Iniciar la prueba final'
 txt_sendresults = 'Enviar los resultados'
+time = QTime(0,0,0)
+txt_timer = time.toString('hh:mm:ss')
