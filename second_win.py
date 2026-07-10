@@ -41,7 +41,7 @@ class TestWin(QWidget):
 
 
       self.left_layout = QVBoxLayout()
-      self.left_layout.addWidget(self.label_name, alignment = Qt. AlignCenter);
+      self.left_layout.addWidget(self.label_name, alignment = Qt. AlignLeft);
       self.left_layout.addWidget(self.input_name, alignment = Qt.AlignLeft)
       self.left_layout.addWidget(self.label_age, alignment = Qt.AlignLeft)
       self.left_layout.addWidget(self.input_age, alignment = Qt.AlignLeft)
@@ -51,7 +51,6 @@ class TestWin(QWidget):
 
       self.left_layout.addWidget(self.test2_inst, alignment = Qt.AlignLeft)
       self.left_layout.addWidget(self.test2_button, alignment = Qt.AlignLeft)
-      self.left_layout.addWidget(self.rest2_result, alignment = Qt.AlignLeft)
       self.left_layout.addWidget(self.test3_inst, alignment = Qt.AlignLeft)
       self.left_layout.addWidget(self.test3_button, alignment = Qt.AlignLeft)
       self.left_layout.addWidget(self.rest2_result, alignment = Qt.AlignLeft)
@@ -83,6 +82,8 @@ class TestWin(QWidget):
   def connection(self):
     self.test1_button.clicked.connect(self.timer_test)
     self.test2_button.clicked.connect(self.timer_sits)
+    self.test3_button.clicked.connect(self.timer_final)
+
 
 
   def next_click(self):
@@ -114,5 +115,25 @@ class TestWin(QWidget):
   def timer2Event(self):
     self.time = self.time.addSecs(-1)
     self.label_time.setText(self.time.toString()[6:8])
+    if self.time.toString() == "00:00:00":
+      self.timer.stop()
+
+
+  def timer_final(self):
+    self.time = QTime(0,1,0)
+    self.label_time.setText(self.time.toString())
+    self.timer = QTimer()
+    self.timer.timeout.connect(self.timer3Event)
+    self.timer.start(1000)
+
+  def timer3Event(self):
+    self.time = self.time.addSecs(-1)
+    self.label_time.setText(self.time.toString())
+    if self.time.toString() == "00:00:59":
+      self.label_time.setStyleSheet("color: rgb(0,255,0)")
+    elif self.time.toString() == "00:00:44":
+      self.label_time.setStyleSheet("color: rgb(0,0,0)")
+    elif self.time.toString() == "00:00:15":
+      self.label_time.setStyleSheet("color: rgb(0,255,0)")
     if self.time.toString() == "00:00:00":
       self.timer.stop()
