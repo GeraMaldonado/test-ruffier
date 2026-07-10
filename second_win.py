@@ -4,6 +4,14 @@ from PyQt5.QtGui import QFont
 
 from instr import txt_title, win_x, win_y, win_width, win_height, txt_name, txt_hintname, txt_hintage, txt_age, txt_test1, txt_starttest1, txt_hinttest1, txt_test2, txt_starttest2, txt_hinttest2, txt_test3, txt_starttest3, txt_hinttest3, txt_timer
 
+class Datos():
+  def __init__(self, name, age, test1, test2, test3):
+    self.name = name
+    self.age = int(age)
+    self.test1 = int(test1)
+    self.test2 = int(test2)
+    self.test3 = int(test3)
+
 class TestWin(QWidget):
   def __init__(self):
     super().__init__()
@@ -83,13 +91,14 @@ class TestWin(QWidget):
     self.test1_button.clicked.connect(self.timer_test)
     self.test2_button.clicked.connect(self.timer_sits)
     self.test3_button.clicked.connect(self.timer_final)
+    self.buttom.clicked.connect(self.next_click)
 
 
 
   def next_click(self):
-    self.hide()
-#    self.final_win = 
-
+#    self.hide()
+#    self.final_win =
+    resultados = Datos(self.input_name.text(), self.input_age.text(), self.rest1_result.text(), self.rest2_result.text(), self.rest3_result.text())
 
   def timer_test(self):
     self.time = QTime(0,0,15)
