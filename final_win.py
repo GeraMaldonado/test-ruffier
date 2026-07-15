@@ -19,8 +19,6 @@ class FinalWin(QWidget):
   def initUI(self):
     result = self.resutlado() 
 
-    print(result)
-
     self.txt_index = QLabel(txt_index)
     self.txt_workheart = QLabel(txt_workheart + result)
  
