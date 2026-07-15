@@ -1,8 +1,8 @@
 from PyQt5.QtCore import Qt, QTime, QTimer
 from PyQt5.QtWidgets import QWidget, QLabel, QVBoxLayout, QPushButton, QApplication, QLineEdit, QHBoxLayout
 from PyQt5.QtGui import QFont
-
 from instr import txt_title, win_x, win_y, win_width, win_height, txt_name, txt_hintname, txt_hintage, txt_age, txt_test1, txt_starttest1, txt_hinttest1, txt_test2, txt_starttest2, txt_hinttest2, txt_test3, txt_starttest3, txt_hinttest3, txt_timer
+from final_win import FinalWin
 
 class Datos():
   def __init__(self, name, age, test1, test2, test3):
@@ -28,7 +28,8 @@ class TestWin(QWidget):
   def initUI(self):
      
       self.label_name = QLabel(txt_name)
-      self.input_name = QLineEdit(txt_hintname)
+      self.input_name = QLineEdit()
+      self.input_name.setPlaceholderText(txt_hintname)
       self.label_age = QLabel(txt_age)
       self.input_age = QLineEdit(txt_hintage)
 
@@ -96,9 +97,10 @@ class TestWin(QWidget):
 
 
   def next_click(self):
-#    self.hide()
-#    self.final_win =
     resultados = Datos(self.input_name.text(), self.input_age.text(), self.rest1_result.text(), self.rest2_result.text(), self.rest3_result.text())
+    self.hide()
+    self.final_win = FinalWin(resultados)
+
 
   def timer_test(self):
     self.time = QTime(0,0,15)
